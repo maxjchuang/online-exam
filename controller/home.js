@@ -2,7 +2,7 @@ module.exports = {
 
   render: function* () {
     if (!this.session.user) {
-      return this.status = 403;
+      return this.redirect('/login');
     }
 
     yield this.render('home', {

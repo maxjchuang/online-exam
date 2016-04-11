@@ -1,0 +1,24 @@
+{
+  "name": "online-exam",
+  "homepage": "https://github.com/maxjchuang/online-exam",
+  "authors": [
+    "maxjchuang <maxjchuang@tencent.com>"
+  ],
+  "description": "a simple koa demo",
+  "main": "app.js",
+  "moduleType": [],
+  "keywords": [
+    "koa"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6"
+  }
+}

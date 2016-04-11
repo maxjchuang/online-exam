@@ -2,23 +2,25 @@ require('./lib/initGlobal')(__dirname);
 
 var app = koa();
 
+// logger
+app.use($.logger());
+
+// static cache
+app.use($.staticCache(Config.app.static.path, Config.app.static.options));
 
 // ejs
-$.ejs(app, {
-  root: path.join(__dirname, 'view'),
-  layout: false
-});
+$.ejs(app, Config.app.view);
 
 app.use($.bodyParser());
 
 // for signed cookie
-app.keys = ['i', 'am', 'secret'];
+app.keys = Config.app.session.keys;
 app.use($.session());
 
 // error handler
-app.use(Lib.errorHandler);
+$.onerror(app);
 
 // router
-Lib.router(app, this);
+Lib.router(app);
 
-app.listen(3000);
+app.listen(Config.app.port);
