@@ -1,6 +1,7 @@
 module.exports = [
   ['get', '/', Controller.home.render],
   ['get', '/login', Controller.auth.render],
-  ['post', '/login', Controller.auth.login],
+  ['post', '/student/login', Controller.student.login],
+  ['post', '/teacher/login', Controller.teacher.login],
   ['get', '/logout', Controller.auth.logout]
 ];

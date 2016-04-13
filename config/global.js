@@ -4,7 +4,9 @@ module.exports = {
     '$': 'koa-middlewares',
     'path': 'path',
     'fs': 'co-fs',
-    'koa': 'koa'
+    'koa': 'koa',
+    'thunkify': 'thunkify',
+    'mysql': 'mysql'
   },
 
   include: {

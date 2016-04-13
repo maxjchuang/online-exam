@@ -1,6 +1,9 @@
-require('./lib/initGlobal')(__dirname);
+require('./lib/global').init(__dirname);
 
 var app = koa();
+
+// database
+app.use(Lib.DB.init);
 
 // logger
 app.use($.logger());
