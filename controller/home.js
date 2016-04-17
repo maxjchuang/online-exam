@@ -7,7 +7,7 @@ module.exports = {
 
     yield this.render('home', {
       user: this.session.user
-    });
+    })
   }
 
 }

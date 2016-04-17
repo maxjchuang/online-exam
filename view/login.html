@@ -35,6 +35,7 @@
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="student">
             <form class="form-horizontal form-signin" action="/student/login" method="POST">
+
               <div class="form-group">
                 <label for="inputNumber" class="col-sm-3 control-label">学&nbsp;&nbsp;号</label>
                 <div class="col-sm-9">
@@ -47,6 +48,11 @@
                   <input type="password" id="inputPassword" name="password" class="form-control" placeholder="请输入密码" required>
                 </div>
               </div>
+
+              <% if (typeof tips !== 'undefined') {%>
+              <div class="alert alert-danger"><span><%= tips %></span></div>
+              <%}%>
+
               <div class="form-group">
                 <div class="col-sm-6">
                   <button class="btn btn-primary btn-block" type="submit">登&nbsp;&nbsp;录</button>

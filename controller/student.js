@@ -1,23 +1,21 @@
 module.exports = {
 
   login: function * () {
-    var number = this.request.body.number;
-    var password = this.request.body.password;
+    var number = this.request.body.number
+    var password = this.request.body.password
 
-    var user = yield Model.student.getByNumber(number);
+    var user = yield Model.student.getByNumber(number)
 
-    if (user.password !== password) {
-      return this.redirect('/login')
+    if (Service.auth.init.bind(this)('student', user, password)) {
+      this.redirect('/student')
     }
-
-    this.session.user = {
-      name: user.name,
-      number: user.number,
-      type: 'student'
-    };
-
-    this.redirect('/');
   },
+
+  index: function * () {
+    yield this.render('student/index', {
+      user: this.session.user
+    })
+  }
 
 }
 

@@ -1,29 +1,32 @@
-require('./lib/global').init(__dirname);
+require('./lib/global').init(__dirname)
 
-var app = koa();
+var app = koa()
+
+// middlewares
+Lib.middlewares.init()
 
 // database
-app.use(Lib.DB.init);
+app.use(Lib.DB.init)
 
 // logger
-app.use($.logger());
+app.use(middlewares.logger())
 
-// static cache
-app.use($.staticCache(Config.app.static.path, Config.app.static.options));
+// static
+app.use(middlewares.static(Config.app.static.path))
 
 // ejs
-$.ejs(app, Config.app.view);
+middlewares.ejs(app, Config.app.view)
 
-app.use($.bodyParser());
+app.use(middlewares.bodyParser())
 
 // for signed cookie
-app.keys = Config.app.session.keys;
-app.use($.session());
+app.keys = Config.app.session.keys
+app.use(middlewares.session())
 
 // error handler
-$.onerror(app);
+middlewares.onerror(app)
 
 // router
-Lib.router(app);
+Lib.router(app)
 
-app.listen(Config.app.port);
+app.listen(Config.app.port)
