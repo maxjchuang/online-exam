@@ -8,7 +8,9 @@ module.exports = {
   },
   view: {
     root: path.join(basePath, 'view'),
-    layout: false
+    cache: false,
+    debug: true,
+    layout: 'layout'
   },
   session: {
     keys: ['max', 'for', 'katy']
