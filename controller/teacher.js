@@ -13,7 +13,34 @@ module.exports = {
 
   index: function * () {
     yield this.render('teacher/index', {
-      user: this.session.user
+      user: this.session.user,
+      nav: {
+        active: 'index'
+      }
+    })
+  },
+
+  class: function * () {
+    var classList = yield Model.teacher.getClassList()
+
+    yield this.render('teacher/class', {
+      user: this.session.user,
+      nav: {
+        active: 'class'
+      },
+      classList: classList
+    })
+  },
+
+  student: function * () {
+    var studentList = yield Model.teacher.getStudentList()
+
+    yield this.render('teacher/student', {
+      user: this.session.user,
+      nav: {
+        active: 'student'
+      },
+      studentList: studentList
     })
   }
 

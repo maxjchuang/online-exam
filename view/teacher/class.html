@@ -3,25 +3,21 @@
 <div class="container">
 
   <div class="page-header">
-    <h1>学生管理 <small>测试版</small></h1>
+    <h1>班级管理 <small>测试版</small></h1>
   </div>
 
   <table class="table table-striped">
     <thead>
       <tr>
         <th>#</th>
-        <th>学号</th>
         <th>班级</th>
-        <th>姓名</th>
       </tr>
     </thead>
     <tbody>
-      <% studentList.forEach(function (student, index) {%>
+      <% classList.forEach(function (_class, index) {%>
       <tr>
         <th scope="row"><%= index+1 %></th>
-        <td><%= student.studentNumber %></td>
-        <td><%= student.className %></td>
-        <td><%= student.studentName %></td>
+        <td><%= _class.name%></td>
       </tr>
       <%})%>
     </tbody>

@@ -1,0 +1,21 @@
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">在线考试系统</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li <%if(nav.active=='index'){%>class="active"<%}%>><a href="/teacher">主页</a></li>
+        <li <%if(nav.active=='paper'){%>class="active"<%}%>><a href="/teacher/paper">试卷</a></li>
+        <li <%if(nav.active=='class'){%>class="active"<%}%>><a href="/teacher/class">班级</a></li>
+        <li <%if(nav.active=='student'){%>class="active"<%}%>><a href="/teacher/student">学生</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><%= user.name %></a></li>
+        <li><a href="/logout">退出</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+

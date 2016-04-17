@@ -8,6 +8,8 @@ module.exports = [
   ['post', '/student/login', Controller.student.login],
 
   // teacher
+  ['post', '/teacher/login', Controller.teacher.login],
   ['get', '/teacher', Service.auth.check, Controller.teacher.index],
-  ['post', '/teacher/login', Controller.teacher.login]
+  ['get', '/teacher/class', Service.auth.check, Controller.teacher.class],
+  ['get', '/teacher/student', Service.auth.check, Controller.teacher.student]
 ];
