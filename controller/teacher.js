@@ -20,6 +20,19 @@ module.exports = {
     })
   },
 
+  paper: function * () {
+    var paperList = yield Model.paper.getPaperList()
+
+    yield this.render('teacher/paper', {
+      user: this.session.user,
+      nav: {
+        active: 'paper'
+      },
+      paperList: paperList
+    })
+  },
+
+
   class: function * () {
     var classList = yield Model.teacher.getClassList()
 

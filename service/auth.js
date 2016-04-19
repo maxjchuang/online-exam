@@ -11,7 +11,7 @@ module.exports = {
     }
   
     this.session.user = user
-    this.session.type = type
+    this.session.user.type = type
   
     return true
   
