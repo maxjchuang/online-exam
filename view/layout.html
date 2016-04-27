@@ -17,10 +17,18 @@
     <!-- Custom styles for this template -->
     <style>
     body {
-      min-height: 2000px;
       padding-top: 70px;
     }
     </style>
+
+    <!-- Custom script for this page -->
+    <% if (typeof cssList !== 'undefined') { 
+      cssList.forEach(function (item) {
+    %>
+    <link href="<%= item %>" rel="stylesheet">
+    <%
+      })
+    }%>
 
   </head>
 
@@ -33,6 +41,15 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="/vendor/jquery/dist/jquery.min.js"></script>
     <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Custom script for this page -->
+    <% if (typeof jsList !== 'undefined') { 
+      jsList.forEach(function (item) {
+    %>
+    <script src="<%= item %>"></script>
+    <%
+      })
+    }%>
   </body>
 </html>
 

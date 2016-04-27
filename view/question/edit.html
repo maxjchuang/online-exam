@@ -1,0 +1,78 @@
+<% include ../teacher/header.html %>
+
+<div class="container">
+
+  <div class="page-header">
+    <h1>
+      编辑试题
+    </h1>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <form id="question-form" class="form-horizontal question-edit" action="/paper/<%= paperId %>/question/<%= (typeof questionInfo.questionId === 'undefined') ? 'create' : ('update/' + questionInfo.questionId) %>" method="post">
+        <div class="form-group">
+          <label for="type" class="col-sm-2 control-label">题目类型</label>
+          <div class="col-sm-10">
+            <select id="question-type" name="type" class="form-control" required>
+              <option value="1" <%= (questionInfo.type == 1 ? "selected" : "") %>>选择题</option>
+              <option value="2" <%= (questionInfo.type == 2 ? "selected" : "") %>>填空题</option>
+              <option value="3" <%= (questionInfo.type == 3 ? "selected" : "") %>>简答题</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="order" class="col-sm-2 control-label">题目序号</label>
+          <div class="col-sm-10">
+            <input name="order" type="number" class="form-control" value="<%= questionInfo.order || "" %>" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="descibe" class="col-sm-2 control-label">问题描述</label>
+          <div class="col-sm-10">
+            <textarea class="form-control" name="describe" rows="3" required><%= questionInfo.describe || "" %></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="score" class="col-sm-2 control-label">题目分值</label>
+          <div class="col-sm-10">
+            <input name="score" type="number" class="form-control" value="<%= questionInfo.score|| "" %>" required>
+          </div>
+        </div>
+        <div id="question-choice" class="form-group">
+          <label for="choice" class="col-sm-2 control-label">题目选项</label>
+          <div class="col-sm-10 choice-holder">
+            <ul>
+              <li><span>A. </span><input name="choice['A']" type="text" class="form-control" value="<%= questionInfo.choice['A'] || "" %>"></li>
+              <li><span>B. </span><input name="choice['B']" type="text" class="form-control" value="<%= questionInfo.choice['B'] || "" %>"></li>
+              <li><span>C. </span><input name="choice['C']" type="text" class="form-control" value="<%= questionInfo.choice['C'] || "" %>"></li>
+              <li><span>D. </span><input name="choice['D']" type="text" class="form-control" value="<%= questionInfo.choice['D'] || "" %>"></li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="answer" class="col-sm-2 control-label">正确答案</label>
+          <div class="col-sm-10">
+            <input name="answer" type="text" class="form-control" value="<%= questionInfo.answer || "" %>">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="autoMark" class="col-sm-2 control-label">自动评分</label>
+          <div class="col-sm-10">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="autoMark" value="1" <%= (questionInfo.autoMark ? "checked" : "") %>> 是
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button id="submit-btn" type="submit" class="btn btn-default">保存试题</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div> <!-- /container -->

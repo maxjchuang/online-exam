@@ -5,11 +5,11 @@ module.exports = {
   },
 
   getPaperById: function * (paperId) {
-    return (yield DB.query('SELECT name FROM paper WHERE paperId = ?', paperId))[0]
+    return (yield DB.query('SELECT paperId, name FROM paper WHERE paperId = ?', paperId))[0]
   },
 
   getQuestionListById: function * (paperId) {
-    return (yield DB.query('SELECT type, `describe`, score, choice, answer, autoMark, `order` FROM question WHERE paperId = ? limit 1', paperId))[0]
+    return (yield DB.query('SELECT questionId, type, `describe`, score, choice, answer, autoMark, `order` FROM question WHERE paperId = ? ORDER BY `order`, questionId DESC', paperId))[0]
   },
 
 }

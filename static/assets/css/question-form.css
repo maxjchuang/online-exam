@@ -1,0 +1,14 @@
+.question-edit .choice-holder ul {
+  padding: 0;
+  margin: 0;
+}
+
+.question-edit .choice-holder ul li {
+  list-style-type: none;
+}
+
+.question-edit .choice-holder .form-control {
+  display: inline;
+  margin: 5px;
+  width: 300px;
+}

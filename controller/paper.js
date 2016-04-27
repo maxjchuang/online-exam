@@ -11,9 +11,15 @@ module.exports = {
       paperInfo: info.paperInfo[0],
       questionList: info.questionList,
       user: this.session.user,
+      questionTypeMap: {
+        '1': "选择题",
+        '2': "填空题",
+        '3': "简答题"
+      },
       nav: {
         active: 'paper'
       }
     })
   }
+
 }

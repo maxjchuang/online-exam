@@ -3,7 +3,13 @@
 <div class="container">
 
   <div class="page-header">
-    <h1>编辑试卷 <small><%= paperInfo.name %></small></h1>
+    <h1>
+      编辑试卷
+      <small><%= paperInfo.name %></small>
+      <div class="pull-right">
+        <a class="btn btn-default" href="/paper/<%= paperInfo.paperId %>/question/add"><span class="glyphicon glyphicon-plus"></span> 添加试题</a>
+      </div>
+    </h1>
   </div>
 
   <table class="table table-striped">
@@ -11,6 +17,8 @@
       <tr>
         <th>题号</th>
         <th>题目描述</th>
+        <th>题目类型</th>
+        <th>分值</th>
         <th>操作</th>
       </tr>
     </thead>
@@ -19,8 +27,10 @@
       <tr>
         <th scope="row"><%= question.order %></th>
         <td><%= question.describe %></td>
+        <td><%= questionTypeMap[question.type] %></td>
+        <td><%= question.score %></td>
         <td>
-          <button type="button" class="btn btn-default btn-xs">编辑</button>
+          <a class="btn btn-default btn-xs" href="/paper/<%= paperInfo.paperId %>/question/edit/<%= question.questionId %>">编辑</a>
           <button type="button" class="btn btn-danger btn-xs">删除</button>
         </td>
       </tr>

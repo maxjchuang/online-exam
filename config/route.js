@@ -15,5 +15,11 @@ module.exports = [
   ['get', '/teacher/student', Service.auth.check, Controller.teacher.student],
 
   // paper
-  ['get', '/paper/edit/:paperId', Service.auth.check, Controller.paper.edit]
+  ['get', '/paper/edit/:paperId', Service.auth.check, Controller.paper.edit],
+
+  // question
+  ['get', '/paper/:paperId/question/edit/:questionId', Service.auth.check, Controller.question.edit],
+  ['get', '/paper/:paperId/question/add', Service.auth.check, Controller.question.edit],
+  ['post', '/paper/:paperId/question/create', Service.auth.check, Controller.question.save],
+  ['post', '/paper/:paperId/question/update/:questionId', Service.auth.check, Controller.question.save]
 ];

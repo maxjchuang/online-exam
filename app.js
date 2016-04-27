@@ -2,6 +2,9 @@ require('./lib/global').init(__dirname)
 
 var app = koa()
 
+// util
+Lib.util.init()
+
 // middlewares
 Lib.middlewares.init()
 
