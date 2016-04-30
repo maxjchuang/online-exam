@@ -19,6 +19,8 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "~3.3.6"
+    "bootstrap": "~3.3.6",
+    "jquery": "~2.2.3",
+    "eonasdan-bootstrap-datetimepicker": "~4.17.37"
   }
 }

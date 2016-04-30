@@ -8,6 +8,7 @@ module.exports = {
     , 'koa': 'koa'
     , 'thunkify': 'thunkify'
     , 'mysql': 'mysql'
+    , 'moment': 'moment'
   },
 
   include: {

@@ -15,7 +15,10 @@ module.exports = [
   ['get', '/teacher/student', Service.auth.check, Controller.teacher.student],
 
   // paper
+  ['get', '/paper/question/list/:paperId', Service.auth.check, Controller.paper.questionList],
   ['get', '/paper/edit/:paperId', Service.auth.check, Controller.paper.edit],
+  ['post', '/paper/create', Service.auth.check, Controller.paper.save],
+  ['post', '/paper/update/:paperId', Service.auth.check, Controller.paper.save],
 
   // question
   ['get', '/paper/:paperId/question/edit/:questionId', Service.auth.check, Controller.question.edit],

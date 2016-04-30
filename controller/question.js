@@ -22,7 +22,8 @@ module.exports = {
         "/assets/css/question-form.css"
       ],
       jsList: [
-        "/assets/js/question-form.js"
+        "/assets/js/question-type.js",
+        "/assets/js/submit-form.js"
       ]
     })
   },

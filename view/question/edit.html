@@ -10,7 +10,7 @@
 
   <div class="row">
     <div class="col-md-6">
-      <form id="question-form" class="form-horizontal question-edit" action="/paper/<%= paperId %>/question/<%= (typeof questionInfo.questionId === 'undefined') ? 'create' : ('update/' + questionInfo.questionId) %>" method="post">
+      <form id="submit-form" class="form-horizontal question-edit" action="/paper/<%= paperId %>/question/<%= (typeof questionInfo.questionId === 'undefined') ? 'create' : ('update/' + questionInfo.questionId) %>" method="post">
         <div class="form-group">
           <label for="type" class="col-sm-2 control-label">题目类型</label>
           <div class="col-sm-10">
@@ -68,7 +68,7 @@
         </div>
         <div class="form-group">
           <div class="col-sm-offset-2 col-sm-10">
-            <button id="submit-btn" type="submit" class="btn btn-default">保存试题</button>
+            <button id="submit-btn" type="submit" class="btn btn-default">保存</button>
           </div>
         </div>
       </form>

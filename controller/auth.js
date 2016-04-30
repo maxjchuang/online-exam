@@ -10,7 +10,7 @@ module.exports = {
 
     yield this.render('login', {
       tips: Config.constant.loginTips[tipsKey]
-    });
+    })
   }
 
 }
