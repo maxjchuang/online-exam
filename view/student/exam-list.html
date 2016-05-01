@@ -27,7 +27,7 @@
         <td><%= exam.beginText %> 至 <%= exam.endText %></td>
         <td><%= statusMap[exam.status] %></td>
         <td>
-          <% if (exam.status === '1') {%> <a class="btn btn-default btn-xs" href="/exam/<%= exam.paperId %>">进入考试</a> <%}%>
+          <% if (exam.status === '1') {%> <a class="btn btn-default btn-xs" href="/student/exam/<%= exam.paperId %>">进入考试</a> <%}%>
         </td>
       </tr>
       <%})%>

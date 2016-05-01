@@ -18,5 +18,11 @@ module.exports = {
     '3': "已完成",
   },
 
-  datetimeFormat: 'YYYY-MM-DD hh:mm:ss'
+  datetimeFormat: 'YYYY-MM-DD hh:mm:ss',
+
+  error: {
+    'examNotBegin': "考试尚未开始",
+    'examEnded': "考试已结束",
+    'examError': "无法进入本次考试"
+  }
 }

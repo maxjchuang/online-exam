@@ -24,18 +24,11 @@ module.exports = {
     var studentId = this.session.user.studentId
       , examList = yield Model.student.getExamListById(studentId)
 
-    // 处理考试时间
-    var now = new Date();
     _.each(examList, function (exam, index) {
-      exam.status = '1'
-      if (now < exam.beginTime) exam.status = '0'
-      if (now > exam.endTime) exam.status = '2'
-
-      exam.beginText = moment(exam.beginTime).format(Config.constant.datetimeFormat)
-      exam.endText = moment(exam.endTime).format(Config.constant.datetimeFormat)
+      $.getExamStatus(exam)
     })
 
-    yield this.render('student/examList', {
+    yield this.render('student/exam-list', {
       user: this.session.user,
       nav: {
         active: 'exam'
@@ -44,6 +37,47 @@ module.exports = {
       statusMap: Config.constant.examStatusMap,
     })
   },
+
+  exam: function * () {
+    var paperId = parseInt(this.params.paperId)
+
+    var info = yield {
+      paperInfo: Model.paper.getPaperById(paperId),
+      questionList: Model.paper.getQuestionListById(paperId),
+    }
+
+    $.getExamStatus(info.paperInfo)
+
+    switch (info.paperInfo.status) {
+      case '0':
+        throw new Error(Config.constant.error['examNotBegin'])
+      break
+      case '2':
+        throw new Error(Config.constant.error['examEnded'])
+      break
+      case '1':
+        // 解析题目选项
+        _.each(info.questionList, function (questionInfo) {
+          questionInfo.choice = $.paramsToObj(questionInfo.choice)
+        })
+
+        yield this.render('student/exam', {
+          paperInfo: info.paperInfo[0],
+          questionList: info.questionList,
+          user: this.session.user,
+          questionTypeMap: Config.constant.questionTypeMap,
+          nav: {
+            active: 'exam'
+          },
+          cssList: [
+            "/assets/css/exam.css"
+          ]
+        })
+      break
+      default:
+        throw new Error(Config.constant.error['examError'])
+    }
+  }
 
 
 
