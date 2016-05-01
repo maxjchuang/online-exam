@@ -11,5 +11,12 @@ module.exports = {
     '3': "简答题"
   },
 
+  examStatusMap: {
+    '0': "未开始",
+    '1': "正在考试",
+    '2': "已结束",
+    '3': "已完成",
+  },
+
   datetimeFormat: 'YYYY-MM-DD hh:mm:ss'
 }
