@@ -71,6 +71,9 @@ module.exports = {
           },
           cssList: [
             "/assets/css/exam.css"
+          ],
+          jsList: [
+            "/assets/js/submit-form.js"
           ]
         })
       break
@@ -82,10 +85,33 @@ module.exports = {
   examSubmit: function * () {
     var data = this.request.body
       , paperId = parseInt(this.params.paperId)
+      , questionList = yield Model.paper.getQuestionListById(paperId)
+      , user = this.session.user
+      , answerDataList = []
+      , mark = null
+      , answer
 
-    debugger
+    _.each(questionList, function (item) {
+      mark = null
+      answer = data[item.questionId]
+      if (item.autoMark) {
+        if (answer === item.answer) mark = item.score
+        else mark = 0
+      }
 
-    throw new Error(Config.constant.error['examNotBegin'])
+      answerDataList.push({
+        studentId: user.studentId,
+        questionId: item.questionId,
+        answer: answer,
+        score: mark
+      })
+    })
+
+    yield answerDataList.map(function (data) {
+      return Model.student.upsertAnswer(data)
+    })
+
+    this.body = {success: true, message: "保存成功"}
   }
 
 

@@ -20,14 +20,16 @@
 
 
     var url = $(this).attr('action')
-    $('#submit-btn').text("保存中，请稍候...").attr('disabled', 'disabled')
+      , btnData = $('#submit-btn').data()
+    $('#submit-btn').text(btnData.loadingText).attr('disabled', 'disabled')
     $.post(url, data, function (result) {
       if (result && result.success === true) {
         alert("保存成功")
+        if (typeof btnData.redirect !== 'undefined') location.href = btnData.redirect
       } else {
         alert("保存失败")
       }
-      $('#submit-btn').text("保存").removeAttr("disabled")
+      $('#submit-btn').text(btnData.text).removeAttr("disabled")
     })
 
     return false;
