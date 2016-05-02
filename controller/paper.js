@@ -70,7 +70,7 @@ module.exports = {
     yield Model.paper.upsertPaper(data, paperId)
     yield Model.class.updateClassPaper(paperId, classList)
 
-    this.body = {success: true, message: result}
+    this.body = {success: true, message: "保存成功"}
   }
 
 }

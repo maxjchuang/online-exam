@@ -1,7 +1,7 @@
 $(function () {
   var options = {
     locale: 'zh-cn',
-    format: 'YYYY-MM-DD hh:mm:ss'
+    format: 'YYYY-MM-DD H:mm:ss'
   }
 
   $('.datetimepicker').datetimepicker(options)

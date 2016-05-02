@@ -18,7 +18,7 @@ module.exports = {
     '3': "已完成",
   },
 
-  datetimeFormat: 'YYYY-MM-DD hh:mm:ss',
+  datetimeFormat: 'YYYY-MM-DD H:mm:ss',
 
   error: {
     'examNotBegin': "考试尚未开始",
