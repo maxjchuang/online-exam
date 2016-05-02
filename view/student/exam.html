@@ -13,7 +13,7 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <form>
+      <form id="exam-form" action="/student/exam/submit/<%= paperInfo.paperId %>" method="POST">
         <% questionList.forEach(function (question, index) {%>
         <div class="form-group">
           <div class="row">
@@ -24,25 +24,25 @@
             <% if (question.type === 1) { %>
             <div class="col-sm-3 radio">
               <label>
-                <input type="radio" name="answer[<%= question.questionId %>]" value="A">
+                <input type="radio" name="<%= question.questionId %>" value="A">
                 <%= question.choice['A'] %>
               </label>
             </div>
             <div class="col-sm-3 radio">
               <label>
-                <input type="radio" name="answer[<%= question.questionId %>]" value="B">
+                <input type="radio" name="<%= question.questionId %>" value="B">
                 <%= question.choice['B'] %>
               </label>
             </div>
             <div class="col-sm-3 radio">
               <label>
-                <input type="radio" name="answer[<%= question.questionId %>]" value="C">
+                <input type="radio" name="<%= question.questionId %>" value="C">
                 <%= question.choice['C'] %>
               </label>
             </div>
             <div class="col-sm-3 radio">
               <label>
-                <input type="radio" name="answer[<%= question.questionId %>]" value="D">
+                <input type="radio" name="<%= question.questionId %>" value="D">
                 <%= question.choice['D'] %>
               </label>
             </div>
@@ -50,13 +50,13 @@
 
             <% if (question.type === 2) { %>
             <div class="col-sm-4">
-              <input name="answer[<%= question.questionId %>]" type="text" class="form-control">
+              <input name="<%= question.questionId %>" type="text" class="form-control">
             </div>
             <% } %>
 
             <% if (question.type === 3) { %>
             <div class="col-sm-4">
-              <textarea name="answer[<%= question.questionId %>]" class="form-control" rows="3"></textarea>
+              <textarea name="<%= question.questionId %>" class="form-control" rows="3"></textarea>
             </div>
             <% } %>
           </div>

@@ -1,7 +1,11 @@
 module.exports = {
 
   getPaperList: function * () {
-    return (yield DB.query('SELECT class.name as className, paper.paperId as paperId, paper.name as paperName FROM class, paper, class_paper WHERE class_paper.classId = class.classId AND class_paper.paperId = paper.paperId'))[0]
+    return (yield DB.query('SELECT paperId, name FROM paper'))[0]
+  },
+
+  getPaperClassList: function * (paperId) {
+    return (yield DB.query('SELECT class.name as name, class.classId as classId FROM class, class_paper WHERE class.classId = class_paper.classId AND class_paper.paperId = ?', paperId))[0]
   },
 
   getPaperById: function * (paperId) {

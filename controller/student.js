@@ -77,8 +77,16 @@ module.exports = {
       default:
         throw new Error(Config.constant.error['examError'])
     }
-  }
+  },
 
+  examSubmit: function * () {
+    var data = this.request.body
+      , paperId = parseInt(this.params.paperId)
+
+    debugger
+
+    throw new Error(Config.constant.error['examNotBegin'])
+  }
 
 
 }

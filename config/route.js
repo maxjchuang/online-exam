@@ -8,6 +8,7 @@ module.exports = [
   ['post', '/student/login', Controller.student.login],
   ['get', '/student/examList', Service.auth.check, Controller.student.examList],
   ['get', '/student/exam/:paperId', Service.auth.check, Controller.student.exam],
+  ['post', '/student/exam/submit/:paperId', Service.auth.check, Controller.student.examSubmit],
 
   // teacher
   ['post', '/teacher/login', Controller.teacher.login],
@@ -19,6 +20,7 @@ module.exports = [
   // paper
   ['get', '/paper/question/list/:paperId', Service.auth.check, Controller.paper.questionList],
   ['get', '/paper/edit/:paperId', Service.auth.check, Controller.paper.edit],
+  ['get', '/paper/add', Service.auth.check, Controller.paper.edit],
   ['post', '/paper/create', Service.auth.check, Controller.paper.save],
   ['post', '/paper/update/:paperId', Service.auth.check, Controller.paper.save],
 

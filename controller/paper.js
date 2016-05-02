@@ -20,17 +20,31 @@ module.exports = {
   },
 
   edit: function * () {
-    var paperId = parseInt(this.params.paperId)
-      , paperInfo = (yield Model.paper.getPaperById(paperId))[0]
+    var paperId = parseInt(this.params.paperId) || undefined
+      , paperInfo = {}
+      , classList = yield Model.class.getClassList()
 
-    // 日期格式转换
-    paperInfo.beginTime = moment(paperInfo.beginTime).format(Config.constant.datetimeFormat)
-    paperInfo.endTime = moment(paperInfo.endTime).format(Config.constant.datetimeFormat)
+    if (paperId) {
+      var paperInfo = (yield Model.paper.getPaperById(paperId))[0]
+
+      // 日期格式转换
+      paperInfo.beginTime = moment(paperInfo.beginTime).format(Config.constant.datetimeFormat)
+      paperInfo.endTime = moment(paperInfo.endTime).format(Config.constant.datetimeFormat)
+
+      var selectedList = (yield Model.class.getClassList(paperId)).map(function (item) {
+        return item.classId
+      })
+
+      _.each(classList, function (item) {
+        if (selectedList.indexOf(item.classId) > -1) item.selected = true
+      })
+    }
 
     yield this.render('paper/edit', {
       paperInfo: paperInfo,
       user: this.session.user,
       questionTypeMap: Config.constant.questionTypeMap,
+      classList: classList,
       nav: {
         active: 'paper'
       },
@@ -48,9 +62,13 @@ module.exports = {
 
   save: function * () {
     var data = this.request.body
-      , paperId = this.params.paperId
+      , paperId = this.params.paperId ? parseInt(this.params.paperId) : undefined
+      , classList = data.classList
 
-    var result = (yield Model.paper.upsertPaper(data, paperId))
+    delete data.classList
+
+    yield Model.paper.upsertPaper(data, paperId)
+    yield Model.class.updateClassPaper(paperId, classList)
 
     this.body = {success: true, message: result}
   }
