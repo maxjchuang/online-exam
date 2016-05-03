@@ -17,7 +17,18 @@ module.exports = {
     })
 
     return true
+  },
 
+  getClassById: function * (classId) {
+    return (yield DB.query('SELECT classId, name FROM class WHERE classId = ?', classId))[0]
+  },
+
+  upsertClass: function * (data, classId) {
+    if (typeof classId === 'undefined') {
+      return (yield DB.query('INSERT INTO class SET ? ', data))[0]
+    } else {
+      return (yield DB.query('UPDATE class SET ? WHERE classId = ?', [data, classId]))[0]
+    }
   }
 
 }

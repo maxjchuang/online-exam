@@ -3,7 +3,13 @@
 <div class="container">
 
   <div class="page-header">
-    <h1>班级管理 <small>测试版</small></h1>
+    <h1>
+      班级管理
+      <small>所有班级</small>
+      <div class="pull-right">
+        <a class="btn btn-default" href="/class/add"><span class="glyphicon glyphicon-plus"></span> 添加班级</a>
+      </div>
+    </h1>
   </div>
 
   <table class="table table-striped">
@@ -11,6 +17,7 @@
       <tr>
         <th>#</th>
         <th>班级</th>
+        <th>操作</th>
       </tr>
     </thead>
     <tbody>
@@ -18,6 +25,10 @@
       <tr>
         <th scope="row"><%= index+1 %></th>
         <td><%= _class.name %></td>
+        <td>
+          <a class="btn btn-default btn-xs" href="/class/edit/<%= _class.classId %>">编辑</a>
+          <a class="btn btn-danger btn-xs" href="#">删除</a>
+        </td>
       </tr>
       <%})%>
     </tbody>
