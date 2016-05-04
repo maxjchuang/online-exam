@@ -108,7 +108,13 @@ module.exports = {
     })
 
     yield answerDataList.map(function (data) {
-      return Model.student.upsertAnswer(data)
+      return Model.answer.upsertAnswer(data)
+    })
+
+    yield Model.score.upsertScore({
+      studentId: user.studentId,
+      paperId: paperId,
+      score: null
     })
 
     this.body = {success: true, message: "保存成功"}

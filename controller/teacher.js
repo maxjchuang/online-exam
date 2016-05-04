@@ -41,6 +41,64 @@ module.exports = {
     })
   },
 
+  markList: function * () {
+    var paperId = parseInt(this.params.paperId)
+      , info = yield {
+          markList: Model.teacher.getMarkList(paperId),
+          paperInfo: Model.paper.getPaperById(paperId)
+        }
+
+    yield this.render('teacher/mark-list', {
+      user: this.session.user,
+      nav: {
+        active: 'paper'
+      },
+      markList: info.markList,
+      paperInfo: info.paperInfo[0]
+    })
+  },
+
+  mark: function * () {
+    var paperId = parseInt(this.params.paperId)
+      , studentId = parseInt(this.params.studentId)
+      , info = yield {
+          paper: Model.paper.getPaperById(paperId),
+          student: Model.student.getStudentById(studentId),
+          mark: Model.teacher.getMarkById(paperId, studentId)
+        }
+
+    yield this.render('teacher/mark', {
+      user: this.session.user,
+      nav: {
+        active: 'paper'
+      },
+      paperInfo: info.paper[0],
+      studentInfo: info.student[0],
+      markInfo: info.mark,
+      jsList: [
+        "/assets/js/submit-form.js"
+      ]
+    })
+  },
+
+  markSubmit: function * () {
+    var paperId = parseInt(this.params.paperId)
+      , studentId = parseInt(this.params.studentId)
+      , data = this.request.body
+      , score = 0
+     
+    _.each(data.score, function (item) {
+      score += parseInt(item)
+    })
+
+    yield Model.score.upsertScore({
+      paperId: paperId,
+      studentId: studentId,
+      score: score
+    })
+
+    this.body = {success: true, message: "保存成功"}
+  },
 
   class: function * () {
     var classList = yield Model.class.getClassList()
