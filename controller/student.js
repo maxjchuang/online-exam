@@ -134,7 +134,7 @@ module.exports = {
 
     yield this.render('student/paper', {
       user: this.session.user,
-      paperInfo: info.paper,
+      paperInfo: info.paper[0],
       examInfo: info.exam,
       cssList: [
         "/assets/css/mark.css"

@@ -29,7 +29,7 @@
           <%= exam.score ? exam.score + "分" : statusMap[exam.status] %>
         </td>
         <td>
-          <% if (exam.status === '1') {%> <a class="btn btn-default btn-xs" href="/student/exam/<%= exam.paperId %>">进入考试</a> <%}%>
+          <% if (exam.status === '1' && !exam.score) {%> <a class="btn btn-default btn-xs" href="/student/exam/<%= exam.paperId %>">进入考试</a> <%}%>
           <% if (exam.score) {%> <a class="btn btn-default btn-xs" href="/student/paper/<%= exam.paperId %>">查看试卷</a> <%}%>
         </td>
       </tr>
