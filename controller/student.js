@@ -44,13 +44,13 @@ module.exports = {
 
   exam: function * () {
     var paperId = parseInt(this.params.paperId)
-
-    var info = yield {
+      , user = this.session.user,
+      , info = yield {
       paperInfo: Model.paper.getPaperById(paperId),
       questionList: Model.paper.getQuestionListById(paperId),
     }
 
-    $.getExamStatus(info.paperInfo)
+    $.getExamStatus(info.paperInfo[0])
 
     switch (info.paperInfo.status) {
       case '0':
