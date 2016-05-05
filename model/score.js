@@ -11,7 +11,12 @@ module.exports = {
     } else {
       return (yield DB.query('INSERT INTO score SET ?', data))[0]
     }
-  }
+  },
+
+  getMarkList: function * (paperId) {
+    return (yield DB.query('SELECT student.studentId as studentId, student.name as studentName, student.number as studentNumber, class.name as className FROM score, student, class WHERE score.paperId = ? AND score.studentId = student.studentId AND student.classId = class.classId', paperId))[0]
+  },
+
 
 }
 

@@ -24,8 +24,8 @@ module.exports = {
     var studentId = this.session.user.studentId
       , examList = yield Model.student.getExamListById(studentId)
       , scoreList = yield examList.map(function (item) {
-                      return Model.score.getStudentScore(studentId, item.paperId)
-                    })
+          return Model.score.getStudentScore(studentId, item.paperId)
+        })
 
     _.each(examList, function (exam, index) {
       exam.score = scoreList[index][0] ? scoreList[index][0].score : undefined
@@ -38,7 +38,7 @@ module.exports = {
         active: 'exam'
       },
       examList: examList,
-      statusMap: Config.constant.examStatusMap,
+      statusMap: Config.constant.examStatusMap
     })
   },
 
@@ -122,6 +122,27 @@ module.exports = {
     })
 
     this.body = {success: true, message: "保存成功"}
+  },
+
+  paper: function * () {
+    var paperId = parseInt(this.params.paperId)
+      , user = this.session.user
+      , info = yield {
+        paper: Model.paper.getPaperById(paperId),
+        exam: Model.answer.getMarkById(paperId, user.studentId)
+      }
+
+    yield this.render('student/paper', {
+      user: this.session.user,
+      paperInfo: info.paper,
+      examInfo: info.exam,
+      cssList: [
+        "/assets/css/mark.css"
+      ],
+      nav: {
+        active: 'score'
+      }
+    })
   }
 
 

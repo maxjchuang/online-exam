@@ -9,6 +9,7 @@ module.exports = [
   ['get', '/student/examList', Service.auth.check, Controller.student.examList],
   ['get', '/student/exam/:paperId', Service.auth.check, Controller.student.exam],
   ['post', '/student/exam/submit/:paperId', Service.auth.check, Controller.student.examSubmit],
+  ['get', '/student/paper/:paperId', Service.auth.check, Controller.student.paper],
 
   // teacher
   ['post', '/teacher/login', Controller.teacher.login],

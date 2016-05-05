@@ -4,8 +4,8 @@
 
   <div class="page-header">
     <h1>
-      批改试卷
-      <small><%= paperInfo.name %> - <%= studentInfo.name %></small>
+      查看试卷
+      <small><%= paperInfo.name %></small>
       <div class="pull-right">
       </div>
     </h1>
@@ -14,8 +14,8 @@
   <div class="row">
     <div class="col-sm-12">
 
-      <form class="form-horizontal" id="submit-form" action="/teacher/mark/submit/<%= paperInfo.paperId %>/<%= studentInfo.studentId %>" method="post">
-        <% markInfo.forEach(function (item, index) {%>
+      <form class="form-horizontal">
+        <% examInfo.forEach(function (item, index) {%>
         <div class="mark-item">
           <div class="form-group">
             <label for="describe-<= item.questionId>" class="col-sm-2 control-label"><%= item.order %>. </label>
@@ -24,7 +24,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="studentAnswer" class="col-sm-2 control-label">学生答案</label>
+            <label for="studentAnswer" class="col-sm-2 control-label">我的答案</label>
             <div class="col-sm-10">
               <p class="form-control-static"><%= item.studentAnswer %></p>
             </div>
@@ -36,21 +36,15 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="score" class="col-sm-2 control-label">评分</label>
+            <label for="score" class="col-sm-2 control-label">得分</label>
             <div class="col-sm-2">
-              <input class="form-control" type="number" name="score[<%= item.questionId %>]" value="<%= item.studentScore %>" />
+              <p class="form-control-static student-score"><%= item.studentScore %></p>
             </div>
             <label for="score" class="col-sm-2 control-label">(满分<%= item.questionScore %>分)</label>
           </div>
         </div>
         <hr/>
         <%})%>
-          <div class="form-group">
-            <label for="score" class="col-sm-2 control-label"></label>
-            <div class="col-sm-2">
-              <button id="submit-btn" type="submit" class="btn btn-default" data-text="提交成绩" data-loading-text="正在提交，请稍后..." data-redirect="/teacher/mark/<%= paperInfo.paperId %>">提交成绩</button>
-            </div>
-          </div>
       </form>
 
     </div>

@@ -9,3 +9,8 @@
 .mark-item .question-describe {
   font-weight: bold;
 }
+
+.mark-item .student-score {
+  font-weight: bold;
+  color: red;
+}

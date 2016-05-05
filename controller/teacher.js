@@ -44,9 +44,16 @@ module.exports = {
   markList: function * () {
     var paperId = parseInt(this.params.paperId)
       , info = yield {
-          markList: Model.teacher.getMarkList(paperId),
+          markList: Model.score.getMarkList(paperId),
           paperInfo: Model.paper.getPaperById(paperId)
         }
+      , scoreList = yield info.markList.map(function (item) {
+          return Model.score.getStudentScore(item.studentId, paperId)
+        })
+
+    _.each(info.markList, function (item, index) {
+      item.score = scoreList[index][0] ? scoreList[index][0].score : undefined
+    })
 
     yield this.render('teacher/mark-list', {
       user: this.session.user,
@@ -54,7 +61,8 @@ module.exports = {
         active: 'paper'
       },
       markList: info.markList,
-      paperInfo: info.paperInfo[0]
+      paperInfo: info.paperInfo[0],
+      statusMap: Config.constant.examStatusMap
     })
   },
 
@@ -64,7 +72,7 @@ module.exports = {
       , info = yield {
           paper: Model.paper.getPaperById(paperId),
           student: Model.student.getStudentById(studentId),
-          mark: Model.teacher.getMarkById(paperId, studentId)
+          mark: Model.answer.getMarkById(paperId, studentId)
         }
 
     yield this.render('teacher/mark', {
@@ -88,10 +96,20 @@ module.exports = {
     var paperId = parseInt(this.params.paperId)
       , studentId = parseInt(this.params.studentId)
       , data = this.request.body
+      , answerList = []
       , score = 0
      
-    _.each(data.score, function (item) {
-      score += parseInt(item)
+    _.each(data.score, function (mark, questionId) {
+      answerList.push({
+        studentId: studentId,
+        questionId: questionId,
+        score: mark
+      })
+      score += parseInt(mark)
+    })
+
+    yield answerList.map(function (data) {
+      return Model.answer.upsertAnswer(data)
     })
 
     yield Model.score.upsertScore({
