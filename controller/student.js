@@ -51,7 +51,7 @@ module.exports = {
 
     $.getExamStatus(info.paperInfo[0])
 
-    switch (info.paperInfo.status) {
+    switch (info.paperInfo[0].status) {
       case '0':
         throw new Error(Config.constant.error['examNotBegin'])
       break
