@@ -1,5 +1,9 @@
 module.exports = {
 
+  getStudentScore: function * (studentId, paperId) {
+    return (yield DB.query('SELECT studentId, paperId, score FROM score WHERE studentId = ? AND paperId = ?', [studentId, paperId]))[0]
+  },
+
   upsertScore: function * (data) {
     var result = (yield DB.query('SELECT * FROM score WHERE studentId = ? AND paperId = ?', [data.studentId, data.paperId]))[0]
     if (result.length) {

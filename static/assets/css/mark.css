@@ -1,0 +1,11 @@
+.mark-item {
+  margin-bottom: 15px;
+}
+.mark-item .form-group {
+  margin: 0;
+  padding: 0;
+}
+
+.mark-item .question-describe {
+  font-weight: bold;
+}

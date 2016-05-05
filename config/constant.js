@@ -15,7 +15,7 @@ module.exports = {
     '0': "未开始",
     '1': "正在考试",
     '2': "已结束",
-    '3': "已完成",
+    '3': "待批改"
   },
 
   datetimeFormat: 'YYYY-MM-DD H:mm:ss',

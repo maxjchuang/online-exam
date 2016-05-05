@@ -23,8 +23,12 @@ module.exports = {
   examList: function * () {
     var studentId = this.session.user.studentId
       , examList = yield Model.student.getExamListById(studentId)
+      , scoreList = yield examList.map(function (item) {
+                      return Model.score.getStudentScore(studentId, item.paperId)
+                    })
 
     _.each(examList, function (exam, index) {
+      exam.score = scoreList[index][0] ? scoreList[index][0].score : undefined
       $.getExamStatus(exam)
     })
 

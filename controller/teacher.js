@@ -75,6 +75,9 @@ module.exports = {
       paperInfo: info.paper[0],
       studentInfo: info.student[0],
       markInfo: info.mark,
+      cssList: [
+        "/assets/css/mark.css"
+      ],
       jsList: [
         "/assets/js/submit-form.js"
       ]
