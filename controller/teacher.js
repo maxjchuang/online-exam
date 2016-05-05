@@ -103,7 +103,7 @@ module.exports = {
       answerList.push({
         studentId: studentId,
         questionId: questionId,
-        score: mark
+        score: mark || 0
       })
       score += parseInt(mark)
     })
