@@ -44,7 +44,6 @@ module.exports = {
 
   exam: function * () {
     var paperId = parseInt(this.params.paperId)
-      , user = this.session.user,
       , info = yield {
       paperInfo: Model.paper.getPaperById(paperId),
       questionList: Model.paper.getQuestionListById(paperId),
