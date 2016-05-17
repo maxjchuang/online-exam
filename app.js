@@ -32,4 +32,7 @@ middlewares.onerror(app)
 // router
 Lib.router(app)
 
+// close connections
+app.use(Lib.DB.close)
+
 app.listen(Config.app.port)
