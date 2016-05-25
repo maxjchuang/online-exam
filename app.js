@@ -9,7 +9,7 @@ Lib.util.init()
 Lib.middlewares.init()
 
 // database
-app.use(Lib.DB.init)
+Lib.DB.init()
 
 // logger
 app.use(middlewares.logger())
@@ -31,8 +31,5 @@ middlewares.onerror(app)
 
 // router
 Lib.router(app)
-
-// close connections
-app.use(Lib.DB.close)
 
 app.listen(Config.app.port)
