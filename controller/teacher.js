@@ -123,6 +123,13 @@ module.exports = {
 
   class: function * () {
     var classList = yield Model.class.getClassList()
+      , classPaperList = yield classList.map(function (_class) {
+          return Model.class.getClassPaperList(_class.classId)
+        })
+
+    _.each(classList, function (_class, index) {
+      _class.paperList = classPaperList[index]
+    })
 
     yield this.render('teacher/class', {
       user: this.session.user,
@@ -142,6 +149,62 @@ module.exports = {
         active: 'student'
       },
       studentList: studentList
+    })
+  },
+
+  studentMark: function * () {
+    var studentId = parseInt(this.params.studentId)
+      , student = (yield Model.student.getStudentById(studentId))[0]
+      , mark = yield Service.mark.getStudentMark(studentId)
+
+    yield this.render('teacher/studentMark', {
+      user: this.session.user,
+      mark: mark,
+      name: student.name,
+      jsList: [
+        "/vendor/Chart.js/dist/Chart.min.js",
+        "/assets/js/markChart.js"
+      ],
+      nav: {
+        active: 'student'
+      }
+    })
+  },
+
+  paperMark: function * () {
+    var paperId = parseInt(this.params.paperId)
+      , paperInfo = (yield Model.paper.getPaperById(paperId))[0]
+      , paperMarkList = yield Model.score.getPaperMarkList(paperId)
+      , rankMap = $.getRank(paperMarkList, 'score')
+
+    yield this.render('teacher/paperMark', {
+      user: this.session.user,
+      nav: {
+        active: 'paper'
+      },
+      rankMap: rankMap,
+      paperInfo: paperInfo,
+      paperMarkList: paperMarkList
+    })
+  },
+
+  classMark: function * () {
+    var paperId = parseInt(this.params.paperId)
+      , classId = parseInt(this.params.classId)
+      , classInfo = (yield Model.class.getClassById(classId))[0]
+      , paperInfo = (yield Model.paper.getPaperById(paperId))[0]
+      , classMarkList = yield Model.score.getClassMarkList(paperId, classId)
+      , rankMap = $.getRank(classMarkList, 'score')
+
+    yield this.render('teacher/classMark', {
+      user: this.session.user,
+      nav: {
+        active: 'class'
+      },
+      rankMap: rankMap,
+      classInfo: classInfo,
+      paperInfo: paperInfo,
+      classMarkList: classMarkList
     })
   }
 

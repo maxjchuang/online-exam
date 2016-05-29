@@ -28,6 +28,7 @@
         <td><a href="/paper/edit/<%=paper.paperId%>"><%= paper.name %></a></td>
         <td><%- paper.classTextList.join("<br/>") %></td>
         <td>
+          <a class="btn btn-default btn-xs" href="/teacher/paper/mark/<%=paper.paperId%>">成绩统计</a>
           <a class="btn btn-default btn-xs" href="/teacher/mark/<%=paper.paperId%>">批改</a>
           <a class="btn btn-default btn-xs" href="/paper/edit/<%=paper.paperId%>">编辑</a>
           <button type="button" class="btn btn-danger btn-xs">删除</button>

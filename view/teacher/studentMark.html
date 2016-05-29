@@ -1,0 +1,31 @@
+<% include ../teacher/header.html %>
+
+<div class="container">
+
+  <div class="page-header">
+    <h1>
+      成绩统计
+      <small><%= name %></small>
+      <div class="pull-right">
+      </div>
+    </h1>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <canvas id="markChart" width="400" height="400"></canvas>
+    </div>
+  </div>
+
+</div> <!-- /container -->
+
+<script>
+var markData = {
+  labels: [<%- mark.labels.toString() %>],
+  datasets: [{
+    label:  "<%= mark.title %>",
+    data: [<%= mark.datas.toString() %>]
+  }]
+}
+</script>
+

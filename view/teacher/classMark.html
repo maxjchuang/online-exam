@@ -1,0 +1,36 @@
+<% include header.html %>
+
+<div class="container">
+
+  <div class="page-header">
+    <h1>
+      <%= classInfo.name %>
+      <small><%= paperInfo.name %></small>
+    </h1>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>排名</th>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>成绩</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% classMarkList.forEach(function (item, index) {%>
+      <tr>
+        <th scope="row"><%= rankMap[item.score || '-1'] || '#' %></th>
+        <td><%= item.studentNumber%></td>
+        <td><%= item.studentName %></td>
+        <td>
+          <%= item.score ? item.score + "分" : "未批改" %>
+        </td>
+      </tr>
+      <%})%>
+    </tbody>
+  </table>
+
+</div> <!-- /container -->
+

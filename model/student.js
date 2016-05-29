@@ -14,7 +14,7 @@ module.exports = {
   },
 
   getStudentList: function * () {
-    return (yield DB.query('SELECT student.name as studentName, student.number as studentNumber, class.name as className FROM class, student WHERE student.classId = class.classId'))[0]
+    return (yield DB.query('SELECT student.studentId as studentId, student.name as studentName, student.number as studentNumber, class.name as className FROM class, student WHERE student.classId = class.classId'))[0]
   }
 
 }

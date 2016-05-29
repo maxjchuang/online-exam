@@ -17,6 +17,7 @@
       <tr>
         <th>#</th>
         <th>班级</th>
+        <th>试卷</th>
         <th>操作</th>
       </tr>
     </thead>
@@ -25,6 +26,12 @@
       <tr>
         <th scope="row"><%= index+1 %></th>
         <td><%= _class.name %></td>
+        <td>
+          <% _class.paperList.forEach(function (paper, paperIndex) { %>
+          <%if (paperIndex) { %> <br/> <% }%>
+          <a href="/teacher/class/mark/<%= _class.classId %>/<%= paper.paperId %>"><%= paper.name %></a>
+          <% }) %>
+        </td>
         <td>
           <a class="btn btn-default btn-xs" href="/class/edit/<%= _class.classId %>">编辑</a>
           <a class="btn btn-danger btn-xs" href="#">删除</a>

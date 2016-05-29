@@ -3,7 +3,7 @@
 <div class="container">
 
   <div class="page-header">
-    <h1>学生管理 <small>测试版</small></h1>
+    <h1>学生管理 <small>查看管理所有学生</small></h1>
   </div>
 
   <table class="table table-striped">
@@ -13,6 +13,7 @@
         <th>学号</th>
         <th>班级</th>
         <th>姓名</th>
+        <th>操作</th>
       </tr>
     </thead>
     <tbody>
@@ -22,6 +23,9 @@
         <td><%= student.studentNumber %></td>
         <td><%= student.className %></td>
         <td><%= student.studentName %></td>
+        <td>
+          <a class="btn btn-default btn-xs" href="/teacher/student/mark/<%= student.studentId %>">查看成绩</a>
+        </td>
       </tr>
       <%})%>
     </tbody>

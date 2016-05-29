@@ -23,6 +23,10 @@ module.exports = {
     return (yield DB.query('SELECT classId, name FROM class WHERE classId = ?', classId))[0]
   },
 
+  getClassPaperList: function * (classId) {
+    return (yield DB.query('SELECT paper.paperId as paperId, paper.name as name FROM paper, class_paper WHERE classId = ? AND paper.paperId = class_paper.paperId', classId))[0]
+  },
+
   upsertClass: function * (data, classId) {
     if (typeof classId === 'undefined') {
       return (yield DB.query('INSERT INTO class SET ? ', data))[0]

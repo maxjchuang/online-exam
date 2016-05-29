@@ -17,6 +17,13 @@ module.exports = {
     return (yield DB.query('SELECT student.studentId as studentId, student.name as studentName, student.number as studentNumber, class.name as className FROM score, student, class WHERE score.paperId = ? AND score.studentId = student.studentId AND student.classId = class.classId', paperId))[0]
   },
 
+  getPaperMarkList: function * (paperId) {
+    return (yield DB.query('SELECT student.studentId as studentId, student.name as studentName, student.number as studentNumber, class.name as className, score FROM score, student, class WHERE score.paperId = ? AND score.studentId = student.studentId AND student.classId = class.classId ORDER BY score DESC', paperId))[0]
+  },
+
+  getClassMarkList: function * (paperId, classId) {
+    return (yield DB.query('SELECT student.studentId as studentId, student.name as studentName, student.number as studentNumber, class.name as className, score FROM score, student, class WHERE score.paperId = ? AND class.classId = ? AND score.studentId = student.studentId AND student.classId = class.classId ORDER BY score DESC', [paperId, classId]))[0]
+  },
 
 }
 

@@ -45,9 +45,9 @@ module.exports = {
   exam: function * () {
     var paperId = parseInt(this.params.paperId)
       , info = yield {
-      paperInfo: Model.paper.getPaperById(paperId),
-      questionList: Model.paper.getQuestionListById(paperId),
-    }
+        paperInfo: Model.paper.getPaperById(paperId),
+        questionList: Model.paper.getQuestionListById(paperId),
+      }
 
     $.getExamStatus(info.paperInfo[0])
 
@@ -142,8 +142,25 @@ module.exports = {
         active: 'score'
       }
     })
-  }
+  },
 
+  mark: function * () {
+    var student = this.session.user
+      , mark = yield Service.mark.getStudentMark(student.studentId)
+
+    yield this.render('student/mark', {
+      user: this.session.user,
+      mark: mark,
+      name: student.name,
+      jsList: [
+        "/vendor/Chart.js/dist/Chart.min.js",
+        "/assets/js/markChart.js"
+      ],
+      nav: {
+        active: 'score'
+      }
+    })
+  }
 
 }
 
