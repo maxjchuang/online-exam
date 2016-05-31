@@ -25,6 +25,7 @@
         <td><%= student.studentName %></td>
         <td>
           <a class="btn btn-default btn-xs" href="/teacher/student/mark/<%= student.studentId %>">查看成绩</a>
+          <button type="button" class="remove-btn btn btn-danger btn-xs" data-table="student" data-key="<%= student.studentId %>">删除</button>
         </td>
       </tr>
       <%})%>

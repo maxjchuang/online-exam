@@ -34,7 +34,7 @@
         </td>
         <td>
           <a class="btn btn-default btn-xs" href="/class/edit/<%= _class.classId %>">编辑</a>
-          <a class="btn btn-danger btn-xs" href="#">删除</a>
+          <button type="button" class="remove-btn btn btn-danger btn-xs" data-table="class" data-key="<%= _class.classId %>">删除</button>
         </td>
       </tr>
       <%})%>

@@ -17,12 +17,23 @@ module.exports = {
   
   },
 
-  check: function * (next) {
-    if (typeof this.session.user === 'undefined') {
-      this.redirect($.format('/login?tips=%s#%s', 'userNotLogin', this.session.type))
-    } else {
-      yield next
+  check: function (type) {
+    type = type === 'teacher' ? 'teacher' : 'student'
+
+    return function * (next) {
+      var user = this.session.user
+
+      if (typeof user === 'undefined') {
+        this.redirect($.format('/login?tips=%s#%s', 'userNotLogin', this.session.type))
+      } else {
+        if (user.type !== 'teacher' && user.type !== type) {
+          this.status = 403
+        } else {
+          yield next
+        }
+      }
     }
   }
+    
 }
 

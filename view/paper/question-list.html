@@ -32,7 +32,7 @@
           <td><%= question.score %></td>
           <td>
             <a class="btn btn-default btn-xs" href="/paper/<%= paperInfo.paperId %>/question/edit/<%= question.questionId %>">编辑</a>
-            <button type="button" class="btn btn-danger btn-xs">删除</button>
+            <button type="button" class="remove-btn btn btn-danger btn-xs" data-table="question" data-key="<%= question.questionId %>">删除</button>
           </td>
         </tr>
         <%})%>

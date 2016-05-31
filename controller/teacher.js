@@ -37,7 +37,10 @@ module.exports = {
       nav: {
         active: 'paper'
       },
-      paperList: paperList
+      paperList: paperList,
+      jsList: [
+        "/assets/js/remove-btn.js"
+      ]
     })
   },
 
@@ -136,7 +139,10 @@ module.exports = {
       nav: {
         active: 'class'
       },
-      classList: classList
+      classList: classList,
+      jsList: [
+        "/assets/js/remove-btn.js"
+      ]
     })
   },
 
@@ -148,7 +154,10 @@ module.exports = {
       nav: {
         active: 'student'
       },
-      studentList: studentList
+      studentList: studentList,
+      jsList: [
+        "/assets/js/remove-btn.js"
+      ]
     })
   },
 

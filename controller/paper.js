@@ -15,7 +15,10 @@ module.exports = {
       questionTypeMap: Config.constant.questionTypeMap,
       nav: {
         active: 'paper'
-      }
+      },
+      jsList: [
+        "/assets/js/remove-btn.js"
+      ]
     })
   },
 
