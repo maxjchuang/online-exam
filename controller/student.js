@@ -11,6 +11,17 @@ module.exports = {
     }
   },
 
+  signup: function * () {
+    var data = this.request.body
+    if (data.password === data.confirmPassword) {
+      delete data.confirmPassword
+      yield Model.student.createStudent(data)
+      this.body = {success: true, message: "注册成功，请登录"}
+    } else {
+      this.body = {success: false, message: "注册失败：密码不一致"}
+    }
+  },
+
   index: function * () {
     yield this.render('student/index', {
       user: this.session.user,

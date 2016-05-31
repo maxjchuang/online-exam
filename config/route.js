@@ -8,6 +8,7 @@ module.exports = [
   // student
   ['get', '/student', Service.auth.check(), Controller.student.index],
   ['post', '/student/login', Controller.student.login],
+  ['post', '/student/signup', Controller.student.signup],
   ['get', '/student/examList', Service.auth.check(), Controller.student.examList],
   ['get', '/student/exam/:paperId', Service.auth.check(), Controller.student.exam],
   ['post', '/student/exam/submit/:paperId', Service.auth.check(), Controller.student.examSubmit],

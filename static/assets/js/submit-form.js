@@ -24,10 +24,10 @@
     $('#submit-btn').text(btnData.loadingText).attr('disabled', 'disabled')
     $.post(url, data, function (result) {
       if (result && result.success === true) {
-        alert("保存成功")
+        alert((result && result.message) || "保存成功")
         if (typeof btnData.redirect !== 'undefined') location.href = btnData.redirect
       } else {
-        alert("保存失败")
+        alert((result && result.message) || "保存失败")
       }
       $('#submit-btn').text(btnData.text).removeAttr("disabled")
     })

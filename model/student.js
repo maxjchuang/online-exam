@@ -15,6 +15,10 @@ module.exports = {
 
   getStudentList: function * () {
     return (yield DB.query('SELECT student.studentId as studentId, student.name as studentName, student.number as studentNumber, class.name as className FROM class, student WHERE student.classId = class.classId'))[0]
+  },
+
+  createStudent: function * (data) {
+    return (yield DB.query('INSERT INTO student SET ?', data))
   }
 
 }

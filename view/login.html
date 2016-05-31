@@ -8,6 +8,7 @@
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation" class="active"><a href="#student" aria-controls="student" role="tab" data-toggle="tab">学生登录</a></li>
+      <li role="presentation"><a href="#signup" aria-controls="signup" role="tab" data-toggle="tab">学生注册</a></li>
       <li role="presentation"><a href="#teacher" aria-controls="teacher" role="tab" data-toggle="tab">教师登录</a></li>
     </ul>
 
@@ -34,11 +35,8 @@
           <%}%>
 
           <div class="form-group">
-            <div class="col-sm-6">
+            <div class="col-sm-6 col-sm-offset-3">
               <button class="btn btn-primary btn-block" type="submit">登&nbsp;&nbsp;录</button>
-            </div>
-            <div class="col-sm-6">
-              <button class="btn btn-primary btn-block" type="submit">注&nbsp;&nbsp;册</button>
             </div>
           </div>
         </form>
@@ -59,11 +57,58 @@
             </div>
           </div>
           <div class="form-group">
-            <div class="col-sm-6">
+            <div class="col-sm-6 col-sm-offset-3">
               <button class="btn btn-primary btn-block" type="submit">登&nbsp;&nbsp;录</button>
             </div>
-            <div class="col-sm-6">
-              <button class="btn btn-primary btn-block" type="submit">注&nbsp;&nbsp;册</button>
+          </div>
+        </form>
+      </div>
+
+      <div role="tabpanel" class="tab-pane" id="signup">
+        <form id="submit-form" class="form-horizontal form-signin" action="/student/signup" method="POST">
+
+          <div class="form-group">
+            <label for="inputNumber" class="col-sm-3 control-label">学&nbsp;&nbsp;号</label>
+            <div class="col-sm-9">
+              <input type="text" id="inputNumber" name="number" class="form-control" placeholder="请输入用户名" required autofocus>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputNumber" class="col-sm-3 control-label">姓&nbsp;&nbsp;名</label>
+            <div class="col-sm-9">
+              <input type="text" id="inputName" name="name" class="form-control" placeholder="请输入姓名" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword" class="col-sm-3 control-label">班&nbsp;&nbsp;级</label>
+            <div class="col-sm-9">
+              <select id="selectClass" class="form-control" name="classId">
+                <% classList.forEach(function (_class, index) { %>
+                <option value="<%= _class.classId %>"><%= _class.name %></option>
+                <% }) %>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword" class="col-sm-3 control-label">密&nbsp;&nbsp;码</label>
+            <div class="col-sm-9">
+              <input type="password" id="inputPassword" name="password" class="form-control" placeholder="请输入密码" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword" class="col-sm-3 control-label">确认密码</label>
+            <div class="col-sm-9">
+              <input type="password" id="inputConfirmPassword" name="confirmPassword" class="form-control" placeholder="请再次输入密码" required>
+            </div>
+          </div>
+
+          <% if (typeof tips !== 'undefined') {%>
+          <div class="alert alert-danger"><span><%= tips %></span></div>
+          <%}%>
+
+          <div class="form-group">
+            <div class="col-sm-6 col-sm-offset-3">
+              <button id="submit-btn" type="submit" class="btn btn-primary btn-block" data-text="注册" data-loading-text="请稍侯..." data-redirect="/login">注册</button>
             </div>
           </div>
         </form>
