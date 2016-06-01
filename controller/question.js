@@ -40,7 +40,7 @@ module.exports = {
 
     var result = (yield Model.question.upsertQuestion(data, questionId))
 
-    this.body = {success: true, message: result}
+    this.body = {success: true, message: "保存成功"}
     
   }
 }
